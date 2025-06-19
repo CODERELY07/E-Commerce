@@ -1,6 +1,14 @@
 // Make this code short
 import { useState } from 'react';
-import { FiSearch, FiShoppingCart, FiUser, FiHeart, FiMenu, FiX } from 'react-icons/fi';
+import {
+  Search,
+  ShoppingCart,
+
+  Heart,
+  Menu,
+  X
+} from 'lucide-react';
+
 import MarqueeComponent from './MarqueeComponent';
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from 'lucide-react';
@@ -73,16 +81,16 @@ const Navbar = () => {
           {/* Icons */}
           <div className="hidden md:flex items-center space-x-4">
             <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black">
-              <FiSearch className="h-5 w-5" />
+              <Search className="h-5 w-5" />
             </button>
             <a href="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
-              <FiHeart className="h-5 w-5" />
+              <Heart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                 3
               </span>
             </a>
             <a href="/cart" className="p-2 text-gray-700 hover:text-black relative">
-              <FiShoppingCart className="h-5 w-5" />
+              <ShoppingCart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                 5
               </span>
@@ -93,10 +101,10 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black mr-2">
-              <FiSearch className="h-5 w-5" />
+              <Search className="h-5 w-5" />
             </button>
             <button onClick={toggleMenu} className="p-2 text-gray-700 hover:text-black">
-                  <FiMenu className="h-5 w-5" />
+                  <Menu className="h-5 w-5" />
             </button>
           </div>
         </div>
@@ -110,7 +118,7 @@ const Navbar = () => {
                 placeholder="Search products..."
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 "
               />
-              <FiSearch className="absolute left-3 top-3 text-gray-400" />
+              <Search className="absolute left-3 top-3 text-gray-400" />
             </div>
           </div>
         )}
@@ -161,17 +169,17 @@ const Navbar = () => {
             </div>
             <div className="px-2 border-l border-gray-600  flex-none w-14 ">
                <button onClick={toggleMenu} className="p-2 pl-4 mt-2 te text-gray-700 hover:text-black">
-                 <FiX className="h-5 w-5" />
+                 <X className="h-5 w-5" />
                 </button>
               <div className="flex gap-3 mt-5 flex-col items-center justify-around">
                 <a href="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
-                  <FiHeart className="h-5 w-5" />
+                  <Heart className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                     3
                   </span>
                 </a>
                 <a href="/cart" className="p-2 text-gray-700 hover:text-black relative">
-                  <FiShoppingCart className="h-5 w-5" />
+                  <ShoppingCart className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                     5
                   </span>
