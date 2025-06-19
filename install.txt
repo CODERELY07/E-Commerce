@@ -1,0 +1,14 @@
+router
+npm install react-router-dom
+
+marquee
+npm install react-fast-marquee --save
+
+animation
+npm install framer-motion
+
+icon
+npm install lucide-react
+
+ui component 
+npx shadcn@latest add sidebar

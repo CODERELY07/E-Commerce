@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-const ProductCard = ({prodName, price , imgPath, count}) => {
+const ProductCard = ({prodName, price , imgPath, count, onAdd}) => {
     const [isFav, setIsFav] = useState(false);
     const [counter, setCounter] = useState(count);
     
     const favorite = () =>{
         isFav ? setCounter(counter-1) : setCounter(counter+1);
-         setIsFav(!isFav);
+        setIsFav(!isFav);
     }
 
   return (
@@ -25,6 +25,7 @@ const ProductCard = ({prodName, price , imgPath, count}) => {
     <button  className="mt-2 px-4 py-2 text-sm font-medium text-red-500 hover:text-red-600 transition" onClick={favorite}>
         {isFav ? "❤️" : "🤍"} {counter}
     </button>
+    <button onClick={onAdd}>Add To Cart</button>
     </div>
   )
 }
