@@ -1,32 +1,25 @@
 import React from 'react'
-
 import { useEffect, useState } from 'react'
 import ProductCard from './../components/ProductCard';
 import LoginForm from './../components/LoginForm';
 import Users from '../components/Users';
 import MarqueeComponent from '../components/MarqueeComponent';
+import axios from 'axios';
 
-const products = [
-  {id: 1 , prodName:"Iphone 15", price: 1500, imgPath:'./products/15.jpg',count:0},
-  {id: 2 , prodName: "Iphone 16", price:2000, imgPath: './products/16.jpg',count:0},
-  {id: 3, prodName: "Iphone 17", price:1200, imgPath: './products/17.jpg',count:0},
-  {id: 4, prodName: "Iphone 18", price:1200,
-    imgPath: './products/18.jpg',count:0
-  },
-];
-
-// const loadingAnimation = (loadings) =>{
-//   if(loadings)
-//   return(
-//     <div className='absolute left-0 top-0 z-99 flex justify-center items-center h-full  w-full bg-white'>Loading...</div>  
-//   );
-
-//   return ;
-// }
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState(0);
+  
+  // Fetch api fake store
+  const [products, setProducts] = useState([]);
+  
+  useEffect(()=>{
+    axios.get('https://fakestoreapi.com/products')
+      .then(res => setProducts(res.data))
+      .catch(err => console.error(err));
+  }, []);
+ 
   const handleAddToCart  = () =>{
     setCart(prev => prev+1);
   }
@@ -39,21 +32,17 @@ const Home = () => {
 
   return (
     <>
-      
-      {/* <div>
-        {loadingAnimation(loading)}
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map(product => (
+            <ProductCard 
+              key={product.id} 
+              product={product}
+              onAdd={() => handleAddToCart(product)}
+            />
+          ))}
+        </div>
       </div>
-      <div className='absolute right-5 top-5'>
-        Cart: {cart > 0 && <p>{cart}</p> }
-      </div>
-      <div className='grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-6'>
-        {products.map(product => (
-          <ProductCard key={product.id} prodName={product.prodName} price={product.price} 
-          imgPath={product.imgPath} count={product.count} onAdd={handleAddToCart }/>
-        ))}
-      </div>
-      <LoginForm/>
-      <Users/> */}
     </>
   )
 }

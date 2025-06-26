@@ -7,6 +7,9 @@ npm install react-fast-marquee --save
 animation
 npm install framer-motion
 
+Axious for Api
+npm install axios
+
 icon
 npm install lucide-react
 

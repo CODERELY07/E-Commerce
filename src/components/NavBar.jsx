@@ -1,5 +1,5 @@
 // Make this code short
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Search,
   ShoppingCart,
@@ -12,6 +12,8 @@ import {
 import MarqueeComponent from './MarqueeComponent';
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from 'lucide-react';
+import { CartContext } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
 
 const navigationMenu = [
   {
@@ -40,7 +42,7 @@ const navigationMenu = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  
+  const {cart} = useContext(CartContext);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -60,9 +62,9 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="text-xl montserrat-font text-black">
-              WatchShop
-            </a>
+            <Link to="/" className="text-xl montserrat-font text-black">
+              WataShop
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -89,12 +91,12 @@ const Navbar = () => {
                 3
               </span>
             </a>
-            <a href="/cart" className="p-2 text-gray-700 hover:text-black relative">
+            <Link to="/cart" className="p-2 text-gray-700 hover:text-black relative">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                5
+                 {cart.length}
               </span>
-            </a>
+            </Link>
             
           </div>
 
@@ -104,7 +106,7 @@ const Navbar = () => {
               <Search className="h-5 w-5" />
             </button>
             <button onClick={toggleMenu} className="p-2 text-gray-700 hover:text-black">
-                  <Menu className="h-5 w-5" />
+              <Menu className="h-5 w-5" />
             </button>
           </div>
         </div>
@@ -143,15 +145,10 @@ const Navbar = () => {
             exit={{ x: '-100%' }}
             transition={{ duration: 0.3 }} className="fixed inset-y-0 left-0 w-100  bg-white z-40 shadow-md px-4 md:hidden flex justify-start overflow-hidden">   
 
-            {/* watch img */}
-            <img src="./watch-2.jpg" alt="" className='h-60 w-60 absolute -bottom-0 left-0  ' />
-            <img src="./mobile-bg.jpg" alt="" className='h-60 w-60 absolute  -bottom-0  left-50 left-0' />
-
-
             <div className="px-2 pt-2 pb-3 mt-4 space-y-1 sm:px-3 flex-1  w-100">
                 <span className='mb-4 flex gap-2 items-center'>
-                  <img src="./logo.png" className='cursor pointer w-10 h-10' alt="watchshop logo" />
-                  WatchShop
+                  <img src="./logo.png" className='cursor pointer w-10 h-10' alt="WataShop logo" />
+                  WataShop
                 </span>
                 {navigationMenu.map(navigation => (
                     <motion.a
@@ -178,12 +175,12 @@ const Navbar = () => {
                     3
                   </span>
                 </a>
-                <a href="/cart" className="p-2 text-gray-700 hover:text-black relative">
+                <Link to="/cart" className="p-2 text-gray-700 hover:text-black relative">
                   <ShoppingCart className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                    5
+                    {cart.length}
                   </span>
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

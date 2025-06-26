@@ -1,6 +1,7 @@
 import React from 'react'
 import Marquee from "react-fast-marquee";
-import {   User } from 'lucide-react';
+import { User } from 'lucide-react';
+
 const promoTexts = [
   "Big Summer Sale - Up to 50% OFF!",
   "Free shipping on orders over $50!",
