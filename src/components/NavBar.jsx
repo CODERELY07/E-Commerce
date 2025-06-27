@@ -22,11 +22,6 @@ const navigationMenu = [
     link: "/shop",
   },
   {
-    id:2,
-    name: "Categories",
-    link: "/categoris",
-  },
-  {
     id:3,
     name: "About",
     link: "/about",
@@ -58,16 +53,13 @@ const Navbar = () => {
    
     <nav className="bg-white sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Bar */}
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="text-xl montserrat-font text-black">
               WataShop
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex space-x-6">
               {
@@ -80,7 +72,6 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Icons */}
           <div className="hidden md:flex items-center space-x-4">
             <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black">
               <Search className="h-5 w-5" />
@@ -100,7 +91,6 @@ const Navbar = () => {
             
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black mr-2">
               <Search className="h-5 w-5" />
