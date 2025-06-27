@@ -15,3 +15,6 @@ npm install lucide-react
 
 ui component 
 npx shadcn@latest add sidebar
+
+API I USE
+https://fakestoreapi.com/docs

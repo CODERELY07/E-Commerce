@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import Navbar from "./components/NavBar";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
-
 function App() {
  return (
   <BrowserRouter>

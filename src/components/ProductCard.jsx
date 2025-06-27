@@ -7,7 +7,9 @@ import { CartContext } from '../../context/CartContext';
 const ProductCard = ({product}) => {
     const [isFav, setIsFav] = useState(false);
     const [counter, setCounter] = useState(0);
+
     const { addToCart } = useContext(CartContext);
+    
     const favorite = () =>{
         isFav ? setCounter(counter-1) : setCounter(counter+1);
         setIsFav(!isFav);

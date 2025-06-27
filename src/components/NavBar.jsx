@@ -127,7 +127,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <AnimatePresence>
-          {/* menu is open add opacity and toggle function */}
+          {/* menu is open  opacity and toggle function */}
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -143,17 +143,16 @@ const Navbar = () => {
             initial={{ x: '-100%' }}
             animate={{ x: '0%' }}
             exit={{ x: '-100%' }}
-            transition={{ duration: 0.3 }} className="fixed inset-y-0 left-0 w-100  bg-white z-40 shadow-md px-4 md:hidden flex justify-start overflow-hidden">   
+            transition={{ duration: 0.3 }} className="fixed inset-y-0 left-0 w-full  bg-white z-40 shadow-md px-4 md:hidden flex justify-start overflow-hidden">   
 
-            <div className="px-2 pt-2 pb-3 mt-4 space-y-1 sm:px-3 flex-1  w-100">
+            <div className="px-2 pt-2 pb-3 mt-4 space-y-1 sm:px-3 flex-1">
                 <span className='mb-4 flex gap-2 items-center'>
-                  <img src="./logo.png" className='cursor pointer w-10 h-10' alt="WataShop logo" />
                   WataShop
                 </span>
                 {navigationMenu.map(navigation => (
                     <motion.a
                       href={navigation.link}
-                      whileHover={{ x: 8 }} // move slightly right on hover
+                      whileHover={{ x: 8 }} 
                       transition={{ type: "spring", stiffness: 300 }}
                       key={navigation.id}
                       className="block px-3 py-2 rounded-md text-black font-bold text-2xl flex gap-2 sm:text-3xl hover:text-black  my-5"
