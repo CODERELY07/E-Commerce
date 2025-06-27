@@ -38,7 +38,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const {cart} = useContext(CartContext);
-
+  const MotionLink = motion(Link);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -64,9 +64,9 @@ const Navbar = () => {
             <div className="flex space-x-6">
               {
                 navigationMenu.map(navigation => (
-                  <a href={navigation.link} key={navigation.id} className="text-gray-700 hover:text-black px-3 py-2 text-sm font-medium">
+                  <Link to={navigation.link} key={navigation.id} className="text-gray-700 hover:text-black px-3 py-2 text-sm font-medium">
                     {navigation.name}
-                  </a>
+                  </Link>
                 ))
               }
             </div>
@@ -139,17 +139,18 @@ const Navbar = () => {
                 <span className='mb-4 flex gap-2 items-center'>
                   WataShop
                 </span>
-                {navigationMenu.map(navigation => (
-                    <motion.a
-                      href={navigation.link}
-                      whileHover={{ x: 8 }} 
-                      transition={{ type: "spring", stiffness: 300 }}
-                      key={navigation.id}
-                      className="block px-3 py-2 rounded-md text-black font-bold text-2xl flex gap-2 sm:text-3xl hover:text-black  my-5"
-                    >
-                      <span>{navigation.name}</span>
-                      <ArrowUpRight />
-                    </motion.a>
+                            
+              {navigationMenu.map((navigation) => (
+                <MotionLink
+                  to={navigation.link}
+                  whileHover={{ x: 8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  key={navigation.id}
+                  className="block px-3 py-2 rounded-md text-black font-bold text-2xl flex gap-2 sm:text-3xl hover:text-black my-5"
+                >
+                  <span>{navigation.name}</span>
+                  <ArrowUpRight />
+                </MotionLink>
                 ))}
                 
             </div>
