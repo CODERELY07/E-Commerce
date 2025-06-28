@@ -1,23 +1,34 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import Banner from '../components/Banner';
+import React from "react";
+import { useEffect, useState } from "react";
+import Banner from "../components/Banner";
+import FeaturedCompanies from "../components/FeaturedCompanies";
+import ProductCard from "../components/ProductCard";
+import axios from "axios";
+import CategoryProduct from "../components/CategoryProduct";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    setTimeout(()=>{
+  useEffect(() => {
+    setTimeout(() => {
       setLoading(false);
-    }, 2000)
+    }, 2000);
   }, [loading]);
 
   return (
     <>
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Banner/>
+      <div className="mx-auto">
+        <Banner />
+        <div className="max-w-[1200px] mx-auto">
+          <FeaturedCompanies />
+          <CategoryProduct category="men's clothing" />
+          <CategoryProduct category="jewelery"/>
+          <CategoryProduct category="electronics"/>
+          <CategoryProduct category="women's clothing"/>
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -27,7 +27,7 @@ const ProductCard = ({product}) => {
             </div>
         </Link>
       <div className="p-4 flex-grow">
-        <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">{product.title}</h3>
+        <h3 className="text-lg font-semibold text-gray-800 line-clamp-2 h-full">{product.title}</h3>
         <p className="text-md font-bold text-gray-900 mt-1">${product.price}</p>
       </div>
       <div className="px-4 pb-4 flex items-center justify-between">

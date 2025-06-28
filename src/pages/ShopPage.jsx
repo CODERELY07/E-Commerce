@@ -14,7 +14,10 @@ const ShopPage = () => {
     
     useEffect(()=>{
     axios.get('https://fakestoreapi.com/products')
-        .then(res => setProducts(res.data))
+        .then(res => {
+            // console.log(res.data);
+            setProducts(res.data)
+        })
         .catch(err => console.error(err));
     }, []);
     
