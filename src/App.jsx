@@ -6,6 +6,9 @@ import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
 import ShopPage from "./pages/ShopPage";
 import Footer from "./components/Footer";
+import Page404 from "./pages/Page404";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 function App() {
  return (
   <BrowserRouter>
@@ -15,7 +18,9 @@ function App() {
           <Route path="/product/:id" element={<ProductDetails/>} />
           <Route path="/cart" element={<CartPage/>} />
           <Route path="/shop" element={<ShopPage/>} />
-          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="*" element={<Page404/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 // Make this code short
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   Search,
   ShoppingCart,
@@ -37,7 +37,19 @@ const navigationMenu = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const scrollHandler = () =>{
+      setIsScrolled(window.scrollY > 10);
+    }
+
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
+  })
+
   const {cart} = useContext(CartContext);
+
   const MotionLink = motion(Link);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,7 +62,7 @@ const Navbar = () => {
   return (
     <>
     <MarqueeComponent/>
-    <nav className="bg-transparent fixed w-full top-8 z-50">
+    <nav className={`bg-transparent fixed w-full transition-all duration-500 ease-in-out z-50 ${isScrolled ? 'bg-white/70 backdrop-blur-md shadow-lg top-0' : 'bg-transparent top-8'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">

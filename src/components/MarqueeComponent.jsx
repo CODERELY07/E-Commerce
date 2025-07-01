@@ -1,6 +1,7 @@
 import React from 'react'
 import Marquee from "react-fast-marquee";
 import { User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const promoTexts = [
   "Big Summer Sale - Up to 50% OFF!",
@@ -33,9 +34,9 @@ const MarqueeComponent = () => {
       </div>
       <div className=' border-l border-gray-400 p-0 m-0 flex items-center'>
         <button className='text-white text-xs px-2 py-2 cursor-pointer rounded-sm'> 
-          <a href="/account" className="p-2 text-white hover:text-gray-200">
+          <Link to='/login' className="p-2 text-white hover:text-gray-200">
             <User className="h-4 w-4" />
-          </a>
+          </Link>
         </button>
       </div>
     </div>

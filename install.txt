@@ -4,6 +4,9 @@ npm install react-router-dom
 marquee
 npm install react-fast-marquee --save
 
+swiper
+npm install swiper
+
 animation
 npm install framer-motion
 
