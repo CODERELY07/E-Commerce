@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import Page404 from "./pages/Page404";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Contact from "./pages/Contact";
+import { AboutPage } from "./pages/About";
 function App() {
  return (
   <BrowserRouter>
@@ -20,6 +22,8 @@ function App() {
           <Route path="/shop" element={<ShopPage/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/contact" element={<Contact/>} />
+          <Route path="/about" element={<AboutPage/>} />
           <Route path="*" element={<Page404/>} />
       </Routes>
       <Footer/>

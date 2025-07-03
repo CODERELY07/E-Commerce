@@ -42,7 +42,7 @@ const Footer = () => {
           <p className="text-gray-500 mb-1">Do you have any queries or suggestions?</p>
           <p className="text-gray-800 font-medium">watashop@gmail.com</p>
           <p className="text-gray-500 mt-2">If you need support? Just give us a call.</p>
-          <p className="text-gray-800 font-medium">+154 884 8542</p>
+          <p className="text-gray-800 font-medium">+1 123-4567</p>
         </div>
       </div>
 

@@ -1,81 +1,80 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
-import { p } from 'framer-motion/client';
+import { X, Plus, Minus } from 'lucide-react'; // Import Lucide icons
 
 const CartPage = () => {
-  const {cart, removeFromCart, addToCart, decProdQuan} = useContext(CartContext);
+  const { cart, removeFromCart, addToCart, decProdQuan } = useContext(CartContext);
     
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2);
   };
 
- return (
-     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h2 className="text-2xl font-bold mb-6">Your Shopping Cart</h2>
+  return (
+    <div className="mt-10 max-w-4xl mx-auto px-4 py-12">
+      <h2 className="text-2xl font-light text-gray-900 mb-8">Your Cart</h2>
       
       {cart.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">Your cart is empty.</p>
+          <p className="text-gray-500">Your cart is empty</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {cart.map((item) => (
-            <div key={item.id} className="flex items-center border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <div className="w-24 h-24 flex-shrink-0">
+            <div key={item.id} className="flex items-center border-b py-6">
+              <div className="w-20 h-20 flex-shrink-0 bg-gray-50 rounded-lg overflow-hidden">
                 <img 
                   src={item.image || 'https://via.placeholder.com/100'} 
                   alt={item.title}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain p-2"
                 />
               </div>
               
               <div className="ml-4 flex-grow">
-                <h3 className="font-medium text-lg">{item.title}</h3>
-                <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                <h3 className="font-normal text-gray-900 line-clamp-1">{item.title}</h3>
+                <p className="text-gray-500 mt-1">${item.price.toFixed(2)}</p>
               </div>
               
-              <div className="flex items-center">
-                <button 
-                  onClick={() => decProdQuan(item)}
-                  className="w-8 h-8 flex items-center justify-center border rounded-l bg-gray-100 hover:bg-gray-200"
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center border rounded-md">
+                  <button 
+                    onClick={() => decProdQuan(item)}
+                    className="w-8 h-8 flex items-center justify-center text-gray-500 hover:bg-gray-50"
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <span className="w-8 text-center text-gray-900">
+                    {item.quantity}
+                  </span>
+                  <button 
+                    onClick={() => addToCart(item)}
+                    className="w-8 h-8 flex items-center justify-center text-gray-500 hover:bg-gray-50"
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
+                
+                <p className="w-20 text-right font-medium text-gray-900">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </p>
+                
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  className="text-gray-400 hover:text-gray-600 ml-2"
                 >
-                  -
-                </button>
-                <span className="w-10 h-8 flex items-center justify-center border-t border-b bg-white">
-                  {item.quantity}
-                </span>
-                <button 
-                  onClick={() => addToCart(item)}
-                  className="w-8 h-8 flex items-center justify-center border rounded-r bg-gray-100 hover:bg-gray-200"
-                >
-                  +
+                  <X size={20} />
                 </button>
               </div>
-              
-              <div className="ml-6 w-24 text-right">
-                <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
-              </div>
-              
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="ml-4 text-red-500 hover:text-red-700"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-              </button>
             </div>
           ))}
           
-          <div className="border-t pt-4 mt-6">
-            <div className="flex justify-end">
-              <div className="text-right">
-                <p className="text-lg font-semibold">Total: ${calculateTotal()}</p>
-                <button className="mt-4 bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                  Checkout
-                </button>
-              </div>
+          <div className="border-t pt-6 mt-4">
+            <div className="flex justify-between items-center">
+              <p className="text-gray-600">Subtotal</p>
+              <p className="text-lg font-medium text-gray-900">${calculateTotal()}</p>
             </div>
+            <button className="w-full mt-6 bg-gray-900 text-white py-3 rounded-md hover:bg-gray-800 transition">
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       )}
@@ -83,4 +82,4 @@ const CartPage = () => {
   );
 }
 
-export default CartPage
+export default CartPage;

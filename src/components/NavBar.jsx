@@ -62,7 +62,7 @@ const Navbar = () => {
   return (
     <>
     <MarqueeComponent/>
-    <nav className={`bg-transparent fixed w-full transition-all duration-500 ease-in-out z-50 ${isScrolled ? 'bg-white/70 backdrop-blur-md shadow-lg top-0' : 'bg-transparent top-8'}`}>
+    <nav className={`bg-transparent fixed w-full transition-all duration-500 ease-in-out z-50 ${isScrolled ? 'bg-white/70 shadow-lg top-0' : 'bg-transparent top-8'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
@@ -87,12 +87,12 @@ const Navbar = () => {
             <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black">
               <Search className="h-5 w-5" />
             </button>
-            <a href="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
+            <Link to="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
               <Heart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                 3
               </span>
-            </a>
+            </Link>
             <Link to="/cart" className="p-2 text-gray-700 hover:text-black relative">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
@@ -147,7 +147,7 @@ const Navbar = () => {
             transition={{ duration: 0.3 }} className="fixed inset-y-0 left-0 w-full  bg-white z-40 shadow-md px-4 md:hidden flex justify-start overflow-hidden">   
 
             <div className="px-2 pt-2 pb-3 mt-4 space-y-1 sm:px-3 flex-1">
-                <span className='mb-4 flex gap-2 items-center'>
+                <span onClick={toggleMenu} className='mb-4 flex gap-2 items-center'>
                   WataShop
                 </span>
                             
@@ -157,6 +157,7 @@ const Navbar = () => {
                   whileHover={{ x: 8 }}
                   transition={{ type: "spring", stiffness: 300 }}
                   key={navigation.id}
+                  onClick={toggleMenu}
                   className="block px-3 py-2 rounded-md text-black font-bold text-2xl flex gap-2 sm:text-3xl hover:text-black my-5"
                 >
                   <span>{navigation.name}</span>
@@ -170,13 +171,13 @@ const Navbar = () => {
                  <X className="h-5 w-5" />
                 </button>
               <div className="flex gap-3 mt-5 flex-col items-center justify-around">
-                <a href="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
+                <Link onClick={toggleMenu} to="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
                   <Heart className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                     3
                   </span>
-                </a>
-                <Link to="/cart" className="p-2 text-gray-700 hover:text-black relative">
+                </Link>
+                <Link to="/cart" onClick={toggleMenu} className="p-2 text-gray-700 hover:text-black relative">
                   <ShoppingCart className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                     {cart.length}

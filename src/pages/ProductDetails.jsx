@@ -7,56 +7,81 @@ import AddToCartModal from '../components/AddToCartModal';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [product, setProducts] = useState(null);
+  const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => setProducts(res.data));
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProduct();
   }, [id]);
 
-  if (!product)
+  if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-180">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
       </div>
     );
+  }
+
+  if (!product) {
+    return (
+      <div className="flex justify-center items-center h-screen text-gray-500">
+        Product not found
+      </div>
+    );
+  }
 
   return (
-    <div className="flex justify-center items-center mt-10 lg:mt-20 mx-5">
-      <AddToCartModal/>
-      <div className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col md:flex-row h-full max-w-[600px]">
-        <div className="w-full md:w-2/5 bg-gray-50 flex items-center justify-center p-4">
-          <img
-            src={product.image}
-            alt={product.title}
-            className="h-68 w-full object-contain"
-          />
-        </div>
-
-        <div className="w-full md:w-3/5 p-4 flex flex-col">
-          <div className="flex justify-between items-start mb-2">
-            <h2 className="text-lg font-semibold text-gray-800 line-clamp-2 pr-2">
-              {product.title}
-            </h2>
+    <div className="max-w-6xl mx-auto px-4 mt-10 py-12">
+      <AddToCartModal />
+      
+      <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+        <div className="flex flex-col md:flex-row">
+          {/* Product Image */}
+          <div className="md:w-1/2 bg-gray-50 flex items-center justify-center p-8">
+            <img
+              src={product.image}
+              alt={product.title}
+              className="max-h-96 object-contain"
+            />
           </div>
 
-          <p className="text-sm text-gray-600 line-clamp-3 mb-4 flex-grow">
-            {product.description}
-          </p>
-
-          <div className="flex items-center justify-between mt-auto">
-            <p className="text-lg font-bold text-gray-900">
-              ${product.price.toFixed(2)}
+          {/* Product Info */}
+          <div className="md:w-1/2 p-8 flex flex-col">
+            <h1 className="text-2xl font-light text-gray-900 mb-4">
+              {product.title}
+            </h1>
+            
+            <p className="text-gray-600 mb-6 leading-relaxed">
+              {product.description}
             </p>
-            <button
-              className="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2 rounded-md flex items-center gap-2 transition-colors cursor-pointer duration-200"
-              onClick={() => addToCart(product)}
-            >
-              <ShoppingCart className="h-5 w-5" />
-              <span>Add</span>
-            </button>
+
+            <div className="mt-auto pt-4 border-t border-gray-100">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl font-medium text-gray-900">
+                  ${product.price.toFixed(2)}
+                </span>
+                
+                <button
+                  onClick={() => addToCart(product)}
+                  className="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+                >
+                  <ShoppingCart size={18} />
+                  <span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
