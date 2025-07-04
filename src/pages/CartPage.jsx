@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
-import { X, Plus, Minus } from 'lucide-react'; // Import Lucide icons
+import { X, Plus, Minus } from 'lucide-react'; 
 
 const CartPage = () => {
   const { cart, removeFromCart, addToCart, decProdQuan } = useContext(CartContext);

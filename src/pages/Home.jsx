@@ -2,8 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import FeaturedCompanies from "../components/FeaturedCompanies";
-import ProductCard from "../components/ProductCard";
-import axios from "axios";
 import CategoryProduct from "../components/CategoryProduct";
 
 const Home = () => {

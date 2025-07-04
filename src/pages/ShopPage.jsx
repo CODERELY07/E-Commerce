@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import AddToCartModal from '../components/AddToCartModal';
 import ProductCard from './../components/ProductCard';
-import { Heart } from 'lucide-react'; // Import the Heart icon from Lucide
+import { Heart } from 'lucide-react';
 
 const ShopPage = () => {
-    const [cart, setCart] = useState(0);
+    const [, setCart] = useState(0);
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);

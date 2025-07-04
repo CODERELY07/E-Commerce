@@ -1,3 +1,4 @@
+// TODO: THis will ned wishlist and search functionality
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 import Home from "./pages/Home";
@@ -11,6 +12,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Contact from "./pages/Contact";
 import { AboutPage } from "./pages/About";
+import SearchPage from "./pages/SearchPage";
 function App() {
  return (
   <BrowserRouter>
@@ -24,6 +26,7 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/about" element={<AboutPage/>} />
+          <Route path="/search" element={<SearchPage/>} />
           <Route path="*" element={<Page404/>} />
       </Routes>
       <Footer/>

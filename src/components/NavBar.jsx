@@ -13,7 +13,7 @@ import MarqueeComponent from './MarqueeComponent';
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from 'lucide-react';
 import { CartContext } from '../../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const navigationMenu = [
   {
@@ -38,8 +38,27 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isShopPage, setIsShopPage] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
+
+  const handleSearchSubmit = (e) => {
+    if ((e.key === 'Enter') && searchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
+      setIsSearchOpen(false);
+      setSearchTerm('');
+    }
+  };
 
   useEffect(() => {
+    
+      setIsShopPage(location.pathname === '/shop' || location.pathname === '/search');
+   
+  
     const scrollHandler = () =>{
       setIsScrolled(window.scrollY > 10);
     }
@@ -48,6 +67,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', scrollHandler);
   })
 
+  console.log(isShopPage)
   const {cart} = useContext(CartContext);
 
   const MotionLink = motion(Link);
@@ -84,15 +104,14 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black">
-              <Search className="h-5 w-5" />
-            </button>
-            <Link to="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
-              <Heart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                3
-              </span>
-            </Link>
+            {
+              isShopPage && (
+                <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black">
+                  <Search className="h-5 w-5" />
+                </button>
+            )}
+         
+
             <Link to="/cart" className="p-2 text-gray-700 hover:text-black relative">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
@@ -103,28 +122,36 @@ const Navbar = () => {
           </div>
 
           <div className="md:hidden flex items-center">
-            <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black mr-2">
-              <Search className="h-5 w-5" />
-            </button>
+            {
+              isShopPage && (
+                <button onClick={toggleSearch} className="p-2 text-gray-700 hover:text-black mr-2">
+                  <Search className="h-5 w-5" />
+                </button>
+              )
+            }
+       
             <button onClick={toggleMenu} className="p-2 text-gray-700 hover:text-black">
               <Menu className="h-5 w-5" />
             </button>
           </div>
         </div>
 
-        {/* Mobile Search */}
-        {isSearchOpen && (
-          <div className="py-3">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 "
-              />
-              <Search className="absolute left-3 top-3 text-gray-400" />
-            </div>
+        {isSearchOpen && isShopPage && (
+        <div className="py-3 bg-white max-w-[800px] mx-auto">
+          <div className="flex border rounded-lg  border-gray-200 justify-between items-center px-4">
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={handleSearchSubmit}
+              className="w-full py-2 border-0 focus:outline-none"
+            />
+            <Search className="text-gray-400" />
           </div>
-        )}
+        </div>
+      )}
+
 
         {/* Mobile Menu */}
         <AnimatePresence>
@@ -171,12 +198,6 @@ const Navbar = () => {
                  <X className="h-5 w-5" />
                 </button>
               <div className="flex gap-3 mt-5 flex-col items-center justify-around">
-                <Link onClick={toggleMenu} to="/wishlist" className="p-2 text-gray-700 hover:text-black relative">
-                  <Heart className="h-5 w-5" />
-                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                    3
-                  </span>
-                </Link>
                 <Link to="/cart" onClick={toggleMenu} className="p-2 text-gray-700 hover:text-black relative">
                   <ShoppingCart className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
