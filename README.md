@@ -1,12 +1,38 @@
-# React + Vite
+# 🛒 React WataShop - E-Commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **React + TailwindCSS** e-commerce demo that uses the [Fake Store API](https://fakestoreapi.com/) to fetch products.  
+Users can **browse products, view details, and add items to the cart**.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- Fetch products from **Fake Store API** using **Axios**  
+- Display product list with images, title, and price  
+- View **product details** on a separate page  
+- Add products to a **shopping cart**  
+- Responsive design with **TailwindCSS**  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+- **React** (Frontend library)  
+- **TailwindCSS** (Styling)  
+- **Axios** (API requests)  
+- **Fake Store API** (Products data)  
+
+---
+
+## 📦 Installation & Setup
+
+Clone the repo and install dependencies:
+
+```bash
+# Clone the repository
+git clone https://github.com/CODERELY07/E-Commerce.git
+
+
+# Install dependencies
+npm install
+
+# Run 
+npm run dev
