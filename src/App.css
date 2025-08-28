@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -39,4 +39,13 @@
 
 .read-the-docs {
   color: #888;
+}
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet
+ {
+    margin: -35px var(--swiper-pagination-bullet-horizontal-gap, 4px) !important;
+}
+.swiper {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  height: 350px; /* or whatever your card height is */
 }
